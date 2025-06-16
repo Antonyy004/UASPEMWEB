@@ -18,7 +18,7 @@
     <nav class="navbar">
       <div class="navbar-container">
         <ul class="navbar-nav">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li><a href="product_list.php">Produk</a></li>
 
           <!-- Admin menu -->
@@ -80,7 +80,7 @@
         </div>
         <div class="footer-nav">
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="">Contact</a></li>
             <li><a href="produk.html">Produk</a></li>

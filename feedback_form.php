@@ -147,11 +147,11 @@ $conn->close();
     <nav class="navbar">
       <div class="navbar-container">
         <ul class="navbar-nav">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li><a href="product_list.php">Produk</a></li>
         </ul>
 
-        <a href="index.html" class="navbar-logo"
+        <a href="index.php" class="navbar-logo"
           ><img src="aset-gambar/DRIPTIQUE.svg" alt=""
         /></a>
 

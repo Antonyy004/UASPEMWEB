@@ -21,7 +21,7 @@ $result = $conn->query($sql);
     <nav class="navbar">
       <div class="navbar-container">
         <ul class="navbar-nav">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
         </ul>
 
         <a href="#" class="navbar-logo">
