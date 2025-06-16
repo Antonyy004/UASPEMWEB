@@ -1,7 +1,7 @@
 <?php
 
-$host = "localhost";
-$user = "root";        
+$host = "db.be-mons1.bengt.wasmernet.com";
+$user = "fb9121307be1800039fdb16809e8";        
 $password = "";        
 $dbname = "driptique";
 

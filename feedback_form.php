@@ -1,6 +1,6 @@
 <?php
 // Koneksi ke database
-$conn = new mysqli("localhost", "root", "", "feedback_system");
+$conn = new mysqli("db.be-mons1.bengt.wasmernet.com", "fb9121307be1800039fdb16809e8", "0684fb91-2130-7d19-8000-ff6aacfda562", "db_uas");
 
 // Cek koneksi
 if ($conn->connect_error) {
@@ -191,7 +191,7 @@ $conn->close();
           <h4>Admin Reply:</h4>
           <?php
           $feedback_id = $row['id'];
-          $conn = new mysqli("localhost", "root", "", "feedback_system");
+          $conn = new mysqli("db.be-mons1.bengt.wasmernet.com", "fb9121307be1800039fdb16809e8", "0684fb91-2130-7d19-8000-ff6aacfda562", "db_uas");
           $reply_result = $conn->query("SELECT * FROM admin_replies WHERE feedback_id = $feedback_id");
 
           if ($reply_result->num_rows > 0) {

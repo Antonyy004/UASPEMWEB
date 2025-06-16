@@ -1,9 +1,9 @@
 <?php
 header('Content-Type: application/json');
 
-$host = "localhost";
-$user = "root"; 
-$password = ""; 
+$host = "db.be-mons1.bengt.wasmernet.com";
+$user = "fb9121307be1800039fdb16809e8"; 
+$password = "0684fb91-2130-7d19-8000-ff6aacfda562"; 
 $dbname = "driptique";
 
 $conn = new mysqli($host, $user, $password, $dbname);
