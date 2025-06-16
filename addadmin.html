@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Add New Admin</h1>
+
+  <form id="addAdminForm">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+    </div>
+    <div>
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" required>
+    </div>
+    <button type="submit">Add Admin</button>
+  </form>
+
+  <script>
+    document.getElementById("addAdminForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      const newAdmin = { username, password, role: "admin" };
+
+      const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+      accounts.push(newAdmin);
+      localStorage.setItem("accounts", JSON.stringify(accounts));
+
+      alert("New admin added successfully!");
+      window.location.href = "indexadmin.php"; // Redirect to admin dashboard
+    });
+  </script>
+  
+</body>
+</html>

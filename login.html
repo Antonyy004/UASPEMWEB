@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .login-section {
+        background-color: #1f1f3a;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .login-container {
+        background-color: #fff;
+        color: #1f1f3a;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .login-container h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .login-form div {
+        margin-bottom: 15px;
+      }
+
+      .login-form label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .login-form input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .btn-login {
+        width: 100%;
+        padding: 12px;
+        background-color: #1f1f3a;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #333;
+      }
+      /* Styling untuk Modal Pop-up */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+        overflow: auto;
+        padding-top: 100px;
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .modal-header {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .modal-body {
+        margin-top: 10px;
+      }
+
+      .modal-footer {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .modal-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .modal-button:hover {
+        background-color: #0056b3;
+      }
+
+      .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        float: right;
+        cursor: pointer;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="login-section">
+      <div class="login-container">
+        <h2>Login to Driptique</h2>
+        <form id="login-form" class="login-form">
+          <div>
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              required
+              placeholder="Enter your username"
+            />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Enter your password"
+            />
+          </div>
+          <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        <div class="register-link">
+          <p>Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-icons">
+          <a href=""><i class="fab fa-facebook"></i></a>
+          <a href=""><i class="fab fa-instagram"></i></a>
+          <a href=""><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="footer-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="produk.html">Produk</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal untuk kesalahan login -->
+    <div id="loginErrorModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-header">Login Error</div>
+        <div class="modal-body">Username atau password salah!</div>
+        <div class="modal-footer">
+          <button class="modal-button" onclick="closeModal()">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          // Ambil data akun yang terdaftar dari localStorage
+          const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+          const registeredUser = accounts.find(
+            (account) =>
+              account.username === username && account.password === password
+          );
+          // Cek apakah admin sudah ada di localStorage
+          if (!localStorage.getItem("accounts")) {
+            const defaultAdmin = {
+              username: "admin",
+              password: "admin123",
+              role: "admin",
+            };
+            const accounts = [defaultAdmin];
+            localStorage.setItem("accounts", JSON.stringify(accounts));
+          }
+
+          if (registeredUser) {
+            // Set login status dan role di localStorage
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("role", registeredUser.role); // Simpan role
+
+            // Arahkan ke halaman sesuai role
+            if (registeredUser.role === "admin") {
+              window.location.href = "indexadmin.php"; // Arahkan admin ke daftar akun
+            } else {
+              window.location.href = "index.html"; // Arahkan customer ke homepage
+            }
+          } else {
+            // Tampilkan modal error jika login gagal
+            document.getElementById("loginErrorModal").style.display = "block";
+          }
+        });
+
+      // Fungsi untuk menutup modal
+      function closeModal() {
+        document.getElementById("loginErrorModal").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

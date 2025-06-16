@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .register-section {
+        background-color: #1f1f3a;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .register-container {
+        background-color: #fff;
+        color: #1f1f3a;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .register-container h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .register-form div {
+        margin-bottom: 15px;
+      }
+
+      .register-form label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .register-form input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .btn-register {
+        width: 100%;
+        padding: 12px;
+        background-color: #1f1f3a;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-register:hover {
+        background-color: #333;
+      }
+
+      .register-link {
+        margin-top: 20px;
+      }
+
+      .register-link a {
+        text-decoration: none;
+        color: #1f1f3a;
+        font-weight: bold;
+      }
+      /* Styling untuk Modal Pop-up */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+        overflow: auto;
+        padding-top: 100px;
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .modal-header {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .modal-body {
+        margin-top: 10px;
+      }
+
+      .modal-footer {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .modal-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .modal-button:hover {
+        background-color: #0056b3;
+      }
+
+      .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        float: right;
+        cursor: pointer;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+
+    <section class="register-section">
+      <div class="register-container">
+        <h2>Create an Account</h2>
+        <form id="register-form" class="register-form">
+          <div>
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              required
+              placeholder="Choose a username"
+            />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Choose a password"
+            />
+          </div>
+          <div>
+            <label for="confirm-password">Confirm Password:</label>
+            <input
+              type="password"
+              id="confirm-password"
+              required
+              placeholder="Confirm your password"
+            />
+          </div>
+          <button type="submit" class="btn-register">Register</button>
+        </form>
+        <div class="login-link">
+          <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-icons">
+          <a href=""><i class="fab fa-facebook"></i></a>
+          <a href=""><i class="fab fa-instagram"></i></a>
+          <a href=""><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="footer-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="produk.html">Produk</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal untuk berhasil registrasi -->
+    <div id="registerSuccessModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-header">Account Created</div>
+        <div class="modal-body">
+          Account created successfully! You can now login.
+        </div>
+        <div class="modal-footer">
+          <button
+            class="modal-button"
+            onclick="window.location.href = 'login.html';"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          // Set role as 'customer'
+          const role = "customer";
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+
+          // Retrieve existing accounts from localStorage or initialize an empty array
+          let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+
+          // Add the new account to the array
+          accounts.push({ username, password, role });
+
+          // Save the updated accounts array to localStorage
+          localStorage.setItem("accounts", JSON.stringify(accounts));
+
+          // Tampilkan modal registrasi berhasil
+          document.getElementById("registerSuccessModal").style.display =
+            "block";
+        });
+
+      // Fungsi untuk menutup modal
+      function closeModal() {
+        document.getElementById("registerSuccessModal").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
