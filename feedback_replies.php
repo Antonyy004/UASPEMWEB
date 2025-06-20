@@ -384,7 +384,7 @@ $conn->close();
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="indexadmin.php">Home</a></li>
               <li class="breadcrumb-item active">Manajemen Produk</li>
             </ol>
           </div><!-- /.col -->
