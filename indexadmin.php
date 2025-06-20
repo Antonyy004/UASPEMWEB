@@ -310,7 +310,7 @@ $result = $conn->query($sql);
               <div style="background-color: #1f1f3a;" class="inner">
                 <h3>65</h3>
 
-                <p>Unique Visitors</p>
+                <p>Manajemen Akun Admin</p>
               </div>
               <div class="icon">
                 <i style="color: aliceblue;" class="ion ion-person-add"></i>
