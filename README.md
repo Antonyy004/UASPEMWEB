@@ -38,3 +38,6 @@ Admin :
 
 https://uaspemwebtonirico.wasmer.app/indexadmin.php 
 Username : admin Password : admin123
+
+## Link Jurnal :
+https://docs.google.com/document/d/1n8wk906R7JqdZyprm9MarXHrRI7fQyBC/edit?usp=sharing&ouid=112457585486707921399&rtpof=true&sd=true
